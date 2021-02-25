@@ -12,7 +12,7 @@ class AboutPage extends StatelessWidget {
         child: RaisedButton(
           onPressed: () {
             // Navigator.pop(context);
-            Route route = MaterialPageRoute(builder: (context) => HomePage());
+            Route route = MaterialPageRoute(builder: (context) => AboutPage());
             Navigator.push(context, route);
           },
           child: Text('Kembali'),

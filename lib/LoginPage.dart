@@ -104,14 +104,17 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             onPressed: () {
+              print(formKey.currentState.validate());
+              print(emailController.text.toString());
+              if (formKey.currentState.validate() &&
+                  emailController.text.toString() == email &&
+                  passwordController.text.toString() == password
+                  ) {
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => MyApp()),
                     (Route<dynamic> route) => false);
-              // if (formKey.currentState.validate() &&
-              //     emailController.text.toString() == email) {
-              //   // (Route<dynamic> route) => false);
-              // }
+              }
             },
           )
         ]));

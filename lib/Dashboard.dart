@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/AboutPage.dart';
+import 'package:provider/LoginPage.dart';
 
 // import 'package:provider/GalleryWisata.dart';
 // import 'package:provider/LokasiWisata.dart';
@@ -54,12 +55,17 @@ class _MyHomePageState extends State<MyHomePage> {
         "https://www.yogyes.com/en/yogyakarta-tourism-object/candi/ijo/1.jpg")
   ];
 
+  // Widget logout(BuildContext context) {
+  //   return RaisedButton.icon(onPressed: null, icon: Icons().person, label: null);
+  // }
+
   @override
   Widget build(BuildContext context) {
     final MediaQueryData _mediaQueryData = MediaQuery.of(context);
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
+          // actions: [logout(context)],
         ),
         body: Center(
           child: Column(
@@ -271,91 +277,90 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-        drawer: drawerSide(context));
+        drawer: Drawer(
+          child: ListView(
+            children: <Widget>[
+              UserAccountsDrawerHeader(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("graphics/bg.jpg"), fit: BoxFit.fill),
+                  ),
+                  currentAccountPicture: CircleAvatar(
+                    child: Text("A"),
+                    backgroundColor: Colors.white,
+                  ),
+                  accountName: Text("Admin"),
+                  accountEmail: Text("admin@example.com")),
+              Container(
+                padding: EdgeInsetsDirectional.only(start: 20.0, top: 10.0),
+                child: Text("Menu Utama"),
+              ),
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: AssetImage(
+                      "..."), // no matter how big it is, it won't overflow
+                ),
+                title: Text("Dashboard"),
+                onTap: null,
+              ),
+              ListTile(
+                leading: Icon(Icons.web),
+                title: Text("Profile"),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AboutPage()));
+                },
+              ),
+              // ListTile(
+              //   leading: Icon(Icons.map),
+              //   title: Text("Lokasi Wisata"),
+              //   onTap: () {
+              //     Navigator.of(context).pop();
+              //     Navigator.push(context,
+              //         MaterialPageRoute(builder: (context) => AboutPage()));
+              //   },
+              // ),
+              // ListTile(
+              //   leading: Icon(Icons.videocam),
+              //   title: Text("Video Wisata"),
+              //   onTap: () {
+              //     Navigator.of(context).pop();
+              //     Navigator.push(context,
+              //         MaterialPageRoute(builder: (context) => AboutPage()));
+              //   },
+              // ),
+              // ListTile(
+              //   leading: Icon(Icons.photo_library),
+              //   title: Text("Galeri Wisata"),
+              //   onTap: () {
+              //     Navigator.of(context).pop();
+              //     Navigator.push(context,
+              //         MaterialPageRoute(builder: (context) => AboutPage()));
+              //   },
+              // ),
+              // Divider(
+              //   color: Colors.grey,
+              //   height: 1,
+              // ),
+              // Container(
+              //   padding: EdgeInsetsDirectional.only(start: 20.0, top: 10.0),
+              //   child: Text("Lain-Lain"),
+              // ),
+              // ListTile(
+              //   leading: Icon(Icons.person),
+              //   title: Text("Tentang Pengembang"),
+              //   onTap: null,
+              // ),
+              // ListTile(
+              //   leading: Icon(Icons.power_settings_new),
+              //   title: Text("Keluar"),
+              //   onTap: () {
+              //     SystemNavigator.pop();
+              //   },
+              // ),
+            ],
+          ),
+        ));
   }
-}
-
-Widget drawerSide(context) {
-  new Drawer(
-    child: ListView(
-      children: <Widget>[
-        UserAccountsDrawerHeader(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("graphics/bg.jpg"), fit: BoxFit.fill),
-            ),
-            currentAccountPicture: CircleAvatar(
-              child: Text("A"),
-              backgroundColor: Colors.white,
-            ),
-            accountName: Text("Admin"),
-            accountEmail: Text("admin@example.com")),
-        Container(
-          padding: EdgeInsetsDirectional.only(start: 20.0, top: 10.0),
-          child: Text("Menu Utama"),
-        ),
-        ListTile(
-          leading: Icon(Icons.dashboard),
-          title: Text("Dashboard"),
-          onTap: null,
-        ),
-        ListTile(
-          leading: Icon(Icons.web),
-          title: Text("Profile"),
-          onTap: () {
-            Navigator.of(context).pop();
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => AboutPage()));
-          },
-        ),
-        // ListTile(
-        //   leading: Icon(Icons.map),
-        //   title: Text("Lokasi Wisata"),
-        //   onTap: () {
-        //     Navigator.of(context).pop();
-        //     Navigator.push(context,
-        //         MaterialPageRoute(builder: (context) => AboutPage()));
-        //   },
-        // ),
-        // ListTile(
-        //   leading: Icon(Icons.videocam),
-        //   title: Text("Video Wisata"),
-        //   onTap: () {
-        //     Navigator.of(context).pop();
-        //     Navigator.push(context,
-        //         MaterialPageRoute(builder: (context) => AboutPage()));
-        //   },
-        // ),
-        // ListTile(
-        //   leading: Icon(Icons.photo_library),
-        //   title: Text("Galeri Wisata"),
-        //   onTap: () {
-        //     Navigator.of(context).pop();
-        //     Navigator.push(context,
-        //         MaterialPageRoute(builder: (context) => AboutPage()));
-        //   },
-        // ),
-        // Divider(
-        //   color: Colors.grey,
-        //   height: 1,
-        // ),
-        // Container(
-        //   padding: EdgeInsetsDirectional.only(start: 20.0, top: 10.0),
-        //   child: Text("Lain-Lain"),
-        // ),
-        // ListTile(
-        //   leading: Icon(Icons.person),
-        //   title: Text("Tentang Pengembang"),
-        //   onTap: null,
-        // ),
-        // ListTile(
-        //   leading: Icon(Icons.power_settings_new),
-        //   title: Text("Keluar"),
-        //   onTap: () {
-        //     SystemNavigator.pop();
-        //   },
-        // ),
-      ],
-    ),
-  );
 }

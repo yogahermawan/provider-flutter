@@ -296,60 +296,60 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               leading: Icon(Icons.web),
-              title: Text("Portal Berita"),
+              title: Text("Profile"),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => AboutPage()));
               },
             ),
-            ListTile(
-              leading: Icon(Icons.map),
-              title: Text("Lokasi Wisata"),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AboutPage()));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.videocam),
-              title: Text("Video Wisata"),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AboutPage()));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.photo_library),
-              title: Text("Galeri Wisata"),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AboutPage()));
-              },
-            ),
-            Divider(
-              color: Colors.grey,
-              height: 1,
-            ),
-            Container(
-              padding: EdgeInsetsDirectional.only(start: 20.0, top: 10.0),
-              child: Text("Lain-Lain"),
-            ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text("Tentang Pengembang"),
-              onTap: null,
-            ),
-            ListTile(
-              leading: Icon(Icons.power_settings_new),
-              title: Text("Keluar"),
-              onTap: () {
-                SystemNavigator.pop();
-              },
-            ),
+            // ListTile(
+            //   leading: Icon(Icons.map),
+            //   title: Text("Lokasi Wisata"),
+            //   onTap: () {
+            //     Navigator.of(context).pop();
+            //     Navigator.push(context,
+            //         MaterialPageRoute(builder: (context) => AboutPage()));
+            //   },
+            // ),
+            // ListTile(
+            //   leading: Icon(Icons.videocam),
+            //   title: Text("Video Wisata"),
+            //   onTap: () {
+            //     Navigator.of(context).pop();
+            //     Navigator.push(context,
+            //         MaterialPageRoute(builder: (context) => AboutPage()));
+            //   },
+            // ),
+            // ListTile(
+            //   leading: Icon(Icons.photo_library),
+            //   title: Text("Galeri Wisata"),
+            //   onTap: () {
+            //     Navigator.of(context).pop();
+            //     Navigator.push(context,
+            //         MaterialPageRoute(builder: (context) => AboutPage()));
+            //   },
+            // ),
+            // Divider(
+            //   color: Colors.grey,
+            //   height: 1,
+            // ),
+            // Container(
+            //   padding: EdgeInsetsDirectional.only(start: 20.0, top: 10.0),
+            //   child: Text("Lain-Lain"),
+            // ),
+            // ListTile(
+            //   leading: Icon(Icons.person),
+            //   title: Text("Tentang Pengembang"),
+            //   onTap: null,
+            // ),
+            // ListTile(
+            //   leading: Icon(Icons.power_settings_new),
+            //   title: Text("Keluar"),
+            //   onTap: () {
+            //     SystemNavigator.pop();
+            //   },
+            // ),
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/main.dart';
 
 class AboutPage extends StatelessWidget {
   @override
@@ -10,7 +11,9 @@ class AboutPage extends StatelessWidget {
       body: Center(
         child: RaisedButton(
           onPressed: () {
-            Navigator.pop(context);
+            // Navigator.pop(context);
+            Route route = MaterialPageRoute(builder: (context) => HomePage());
+            Navigator.push(context, route);
           },
           child: Text('Kembali'),
         ),

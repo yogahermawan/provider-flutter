@@ -1,27 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:provider/AboutPage.dart';
+import 'package:provider/Dashboard.dart';
 import 'package:provider/Home.dart';
+
+// https://github.com/yogahermawan/provider-flutter
 
 void main() {
   runApp(MaterialApp(
-    home: HomePage(),
+    debugShowCheckedModeBanner: false,
+    home: MyApp(),
   ));
 }
 
 class HomePage extends StatelessWidget {
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Belajar Routing'),
       ),
-      body: 
-      // Home()
-      Container(
+      body:
+          // Home()
+          Container(
         child: Column(
           children: [
-            RaisedButton(
+            TextButton(
               onPressed: () {
                 Route route =
                     MaterialPageRoute(builder: (context) => AboutPage());

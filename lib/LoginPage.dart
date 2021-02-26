@@ -1,6 +1,10 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:provider/Dashboard.dart';
+import 'package:http/http.dart' as http;
+import 'package:provider/model/LoginModel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -8,10 +12,59 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String email = "rsup@mail.com";
-  String password = "123";
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  TextEditingController emailController = new TextEditingController();
+  void _login() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var url = 'http://10.28.1.37:3000/api/auth/signin';
+    if (formKey.currentState.validate()) {
+      http.post(url, body: {
+        "username": usernameController.text,
+        "password": passwordController.text
+      }).then((res) {
+        final data = json.decode(res.body);
+        print(res.body);
+        if (res.statusCode == 200) {
+          prefs.setString('token', data['accessToken']);
+          Navigator.pushAndRemoveUntil(
+              context,
+              //mengarah ke dashboard
+              MaterialPageRoute(builder: (context) => MyApp()),
+              (Route<dynamic> route) => false);
+        } else {
+          SnackBar(
+            content: new Text(
+              data['message'],
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Color(0xffff322d),
+                  fontSize: 16.0,
+                  fontFamily: "WorkSansSemiBold"),
+            ),
+            backgroundColor: Color(0xffffe5e0),
+            duration: Duration(seconds: 3),
+          );
+        }
+      }).catchError((e) {
+        //widget handle error
+        SnackBar(
+          content: new Text(
+            e,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Color(0xffff322d),
+                fontSize: 16.0,
+                fontFamily: "WorkSansSemiBold"),
+          ),
+          backgroundColor: Color(0xffffe5e0),
+          duration: Duration(seconds: 3),
+        );
+        print(e);
+      });
+    }
+  }
+
+  TextEditingController usernameController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
   final formKey = new GlobalKey<FormState>();
 
@@ -46,11 +99,11 @@ class _LoginPageState extends State<LoginPage> {
           Padding(
             padding: EdgeInsets.all(20),
             child: TextFormField(
-              controller: emailController,
+              controller: usernameController,
               keyboardType: TextInputType.emailAddress,
               style: TextStyle(color: Colors.white),
               validator: (value) {
-                return value.isEmpty ? "Email Tidak Boleh Kosong" : null;
+                return value.isEmpty ? "Username Tidak Boleh Kosong" : null;
               },
               decoration: InputDecoration(
                 border: OutlineInputBorder(
@@ -59,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                     borderSide: BorderSide(color: Colors.white, width: 1.5)),
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white, width: 1.5)),
-                labelText: 'Email',
+                labelText: 'Username',
                 labelStyle: TextStyle(
                   color: Colors.white,
                 ),
@@ -104,17 +157,18 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             onPressed: () {
-              print(formKey.currentState.validate());
-              print(emailController.text.toString());
-              if (formKey.currentState.validate() &&
-                  emailController.text.toString() == email &&
-                  passwordController.text.toString() == password
-                  ) {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyApp()),
-                    (Route<dynamic> route) => false);
-              }
+              _login();
+              // print(formKey.currentState.validate());
+              // print(usernameController.text.toString());
+              // if (formKey.currentState.validate() &&
+              //     usernameController.text.toString() == email &&
+              //     passwordController.text.toString() == password
+              //     ) {
+              //   Navigator.pushAndRemoveUntil(
+              //       context,
+              //       MaterialPageRoute(builder: (context) => MyApp()),
+              //       (Route<dynamic> route) => false);
+              // }
             },
           )
         ]));

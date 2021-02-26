@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/AboutPage.dart';
+import 'package:provider/ListView.dart';
 import 'package:provider/LoginPage.dart';
+import 'package:provider/Profile.dart';
 
 // import 'package:provider/GalleryWisata.dart';
 // import 'package:provider/LokasiWisata.dart';
@@ -309,18 +311,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: () {
                   Navigator.of(context).pop();
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AboutPage()));
+                      MaterialPageRoute(builder: (context) => ProfilePage()));
                 },
               ),
-              // ListTile(
-              //   leading: Icon(Icons.map),
-              //   title: Text("Lokasi Wisata"),
-              //   onTap: () {
-              //     Navigator.of(context).pop();
-              //     Navigator.push(context,
-              //         MaterialPageRoute(builder: (context) => AboutPage()));
-              //   },
-              // ),
+              ListTile(
+                leading: Icon(Icons.map),
+                title: Text("List Users"),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ListPage()));
+                },
+              ),
               // ListTile(
               //   leading: Icon(Icons.videocam),
               //   title: Text("Video Wisata"),
